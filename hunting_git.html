@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+    <title>Hunting Github Assignment</title>
+    <script>
+        $(document).ready(
+            function() {
+                $('button').click(function() {
+                    $.get('https://api.github.com/users/kennethhagist', displayName);
+                });
+            function displayName(data) {
+                if (data.name) {
+                    $('body').append("<p>"+data.name+"<p>");
+                }
+            }
+        }
+    );
+    </script>
+</head>
+<body>
+    <button>Click Me</button>
+</body>
+</html>

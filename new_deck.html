@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+	    <title>Javascript Ninjas</title>
+	    <script type = "text/javascript" src = 'http://code.jquery.com/jquery-1.10.2.min.js'> </script>  
+	</head>
+<body>
+<h1>Javascript Ninjas 3</h1>
+<script type="text/javascript">
+//The Deck should contain the 52 standard cards
+//The Deck should be able to shuffle
+//The Deck should be able to reset
+//The Deck should be able to deal a random card
+//Deal should return the card that was dealt and remove it from the deck
+class Deck {
+    constructor(name){
+		this.deck = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'hJ', 'hQ','hK', 
+		's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 'sJ', 'sQ', 'sK', 
+		'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9', 'd10', 'dJ', 'dQ', 'dK', 
+		'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'cJ', 'cQ', 'cK'];		
+    }
+    
+	shuffle(deck) {
+			let m = 52, t, i;
+		  // While there remain elements to shuffle…
+			while (m) {
+			// Pick a remaining element…
+			i = Math.floor(Math.random() * m--);
+			// And swap it with the current element.
+			t = this.deck[m];
+			this.deck[m] = this.deck[i];
+			this.deck[i] = t;
+			}
+		return this.deck;
+	}
+  
+	reset(){
+		this.deck = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'hJ', 'hQ','hK', 
+		's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 'sJ', 'sQ', 'sK', 
+		'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9', 'd10', 'dJ', 'dQ', 'dK', 
+		'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'cJ', 'cQ', 'cK'];
+	return this.deck	
+    }
+	
+	deal() {
+		let choice = Math.floor(Math.random() * 52);
+		return this.deck.splice(choice,1);
+    };	
+};
+//Player Class
+//The Player should have a name
+//The Player should have a hand
+//The Player should be able to take a card (use the deck.deal method)
+//The Player should be able to discard a card
+class Player {
+    constructor(name){
+        this.name = name;
+		this.hand = [];
+    }
+    
+    showCards(){
+        console.log(`${this.name} hand = ${this.hand}`);
+    }
+	
+	discard(i){
+		this.hand.splice(i,1)
+     };
+}
+var Deck1 = new Deck()
+var player1 = new Player("Samson");
+var dealt = Deck1.deal()
+player1.hand.push(dealt)
+player1.showCards()
+player1.hand.push(Deck1.deal())
+player1.hand.push(Deck1.deal())
+player1.hand.push(Deck1.deal())
+Deck1.shuffle()
+console.log(player1.hand[0])
+console.log(player1.hand[1])
+player1.showCards()
+Deck1.shuffle()
+player1.discard(0)
+player1.showCards()
+</script>   
+</body>
+</html>
